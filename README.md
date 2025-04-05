@@ -1,2 +1,2 @@
 # megacodesweb
-This is El Shadai RUKUNDO's website
+This is El Shaddai RUKUNDO's website.
