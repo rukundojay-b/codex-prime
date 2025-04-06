@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { FiCheckCircle, FiAlertCircle, FiX } from 'react-icons/fi';
 
 const Contact = ({ darkMode }) => {
   const [formData, setFormData] = useState({
@@ -8,7 +9,7 @@ const Contact = ({ darkMode }) => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -29,27 +30,81 @@ const Contact = ({ darkMode }) => {
         },
         body: JSON.stringify({
           ...formData,
-          to: 'megacodesdev3@gmail.com' // Your email address
+          to: 'megacodesdev3@gmail.com'
         }),
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
+        showNotification('success', 'Message sent successfully!');
       } else {
-        setSubmitStatus('error');
+        showNotification('error', 'Failed to send message. Please try again.');
       }
     } catch (error) {
-      setSubmitStatus('error');
       console.error('Error:', error);
+      showNotification('error', 'An error occurred. Please try again later.');
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus(null), 5000);
     }
   };
 
+  const showNotification = (type, message) => {
+    setNotification({ type, message });
+    setTimeout(() => {
+      setNotification(null);
+    }, 8000); // Auto-dismiss after 8 seconds
+  };
+
+  const closeNotification = () => {
+    setNotification(null);
+  };
+
   return (
-    <section id="contact" className="py-20 px-4">
+    <section id="contact" className="py-20 px-4 relative">
+      {/* Notification Container */}
+      <AnimatePresence>
+        {notification && (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ type: 'spring', damping: 25 }}
+            className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 rounded-lg shadow-xl ${
+              notification.type === 'success'
+                ? 'bg-green-100 text-green-800'
+                : 'bg-red-100 text-red-800'
+            }`}
+          >
+            <div className="flex items-center gap-3 p-4 pr-8 max-w-md">
+              {notification.type === 'success' ? (
+                <FiCheckCircle className="text-xl flex-shrink-0" />
+              ) : (
+                <FiAlertCircle className="text-xl flex-shrink-0" />
+              )}
+              <span>{notification.message}</span>
+              <button
+                onClick={closeNotification}
+                className="absolute top-2 right-2 p-1 rounded-full hover:bg-white/20"
+              >
+                <FiX className="text-lg" />
+              </button>
+            </div>
+            
+            {/* Progress bar */}
+            <motion.div
+              initial={{ scaleX: 1 }}
+              animate={{ scaleX: 0 }}
+              transition={{ duration: 8, ease: "linear" }}
+              className={`h-1 ${
+                notification.type === 'success' 
+                  ? 'bg-green-500' 
+                  : 'bg-red-500'
+              } origin-left rounded-b-lg`}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="container mx-auto max-w-4xl">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -72,17 +127,6 @@ const Contact = ({ darkMode }) => {
             darkMode ? 'bg-gray-800' : 'bg-white'
           }`}
         >
-          {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-100 text-green-800 rounded-lg">
-              Thank you! Your message has been sent successfully.
-            </div>
-          )}
-          {submitStatus === 'error' && (
-            <div className="mb-6 p-4 bg-red-100 text-red-800 rounded-lg">
-              Oops! Something went wrong. Please try again later.
-            </div>
-          )}
-
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <label htmlFor="name" className={`block mb-2 font-medium ${
