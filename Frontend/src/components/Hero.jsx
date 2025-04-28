@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { FiMail, FiEye, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
 

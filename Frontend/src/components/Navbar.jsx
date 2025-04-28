@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { FiMoon, FiSun } from 'react-icons/fi'
 

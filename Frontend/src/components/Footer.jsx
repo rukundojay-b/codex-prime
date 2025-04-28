@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiGithub, FiLinkedin, FiTwitter, FiHeart } from 'react-icons/fi';
 
@@ -104,7 +105,7 @@ const Footer = ({ darkMode }) => {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
             <span>© {new Date().getFullYear()} All Rights Reserved</span>
             <span className="hidden sm:inline">•</span>
-            <span className="inline-flex items-center">
+            <span className="text-purple-400 inline-flex items-center">
               Developed by El Shaddai RUKUNDO
             </span>
           </div>
