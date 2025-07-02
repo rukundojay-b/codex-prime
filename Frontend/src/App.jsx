@@ -6,6 +6,7 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Technologies from './components/Technologies'
 
 function App() {
   const [darkMode, setDarkMode] = useState(true)
@@ -45,6 +46,7 @@ function App() {
         <Hero darkMode={darkMode} />
         <About darkMode={darkMode} />
         <Skills darkMode={darkMode} />
+        <Technologies />
         <Projects darkMode={darkMode} />
         <Contact darkMode={darkMode} />
       </main>

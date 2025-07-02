@@ -14,8 +14,9 @@ const About = ({ darkMode }) => {
         >
           <div className="relative">
             <img 
-              src="/images/me.jpg" // Replace with your image
+              src="/profile.webp"
               alt="Profile"
+              loading='lazy'
               className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-purple-500 relative z-10"
             />
             <motion.div

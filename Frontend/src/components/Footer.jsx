@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiGithub, FiLinkedin, FiTwitter, FiHeart } from 'react-icons/fi';
 
@@ -65,28 +66,10 @@ const Footer = ({ darkMode }) => {
               } transition-colors mb-3`}
             >
               <FiMail className="text-lg" />
-              <span>elshaddairukundo3@gmail.com</span>
+              <span>megacodesdev3@gmail.com</span>
             </a>
             <div className="flex justify-center gap-4 mt-4">
-              {[
-                { icon: <FiGithub />, url: "#" },
-                { icon: <FiLinkedin />, url: "#" },
-                { icon: <FiTwitter />, url: "#" }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-xl p-2 rounded-full ${
-                    darkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-white text-gray-700 hover:bg-gray-100'
-                  } shadow-sm transition-colors`}
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+                  Bugesera, Eastern Rwanda
             </div>
           </motion.div>
         </div>
@@ -104,8 +87,8 @@ const Footer = ({ darkMode }) => {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
             <span>© {new Date().getFullYear()} All Rights Reserved</span>
             <span className="hidden sm:inline">•</span>
-            <span className="inline-flex items-center">
-              Developed by El Shaddai RUKUNDO
+            <span className="inline-flex items-center text-purple-500">
+              Developed by LinkFy Connect
             </span>
           </div>
         </motion.div>
