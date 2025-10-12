@@ -1,2 +1,2 @@
 # megacodesweb
-This is El Shaddai RUKUNDO's website.
+This is Jean Baptiste RUKUNDO's website.
