@@ -59,7 +59,7 @@ const Projects = ({ darkMode }) => {
             darkMode ? "text-white" : "text-gray-800"
           }`}
         >
-          System Architecture
+          Production Systems & Active Projects
         </motion.h2>
 
         <motion.p
